@@ -24,6 +24,7 @@ const filterNegatives = (nums) => {
 }
 
 // shorter way
+// ok, not quite, this returns a bunch of booleans!
 const fastFilter = (nums) => nums.map((x)=> x >=0 );
 
 let answer = filterNegatives(randomArr);
