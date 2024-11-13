@@ -1,6 +1,6 @@
 // filters negatives from an array 
 
-// makes array with negative numbers between -300 and 300, but not 0
+// makes array with negative numbers between -300 and 300
 const randomArr = Array.from({length: 100}, (_,index) => {
     // do the random thing but make some negative 
     let num = index * Math.floor(Math.random()*300)
@@ -24,7 +24,6 @@ const filterNegatives = (nums) => {
 }
 
 // shorter way
-// ok, not quite, this returns a bunch of booleans!
 const fastFilter = (nums) => nums.map((x)=> x >=0 );
 
 let answer = filterNegatives(randomArr);
