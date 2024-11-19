@@ -1,5 +1,5 @@
 // takes in user input, returns if it is a palendrome or not
-// removes all punctuation and spaces
+// removes all punctuation and spaces from input
 
 const readline = require('readline');
 
@@ -9,24 +9,23 @@ const rl = readline.createInterface({
 });
 
 const isPalindrome = (str) => { 
-    // make a copy that is plain and an array
-    let plainCopy = str.replace(/\s+/g, "").replace(/\?.,;:'"!/g).toLowerCase().split('');
+    // make a copy, remove spaces and punctuation, put to lowercase, split into array of individual characters
+    let plainCopy = str.replace(/\s+/g, "").replace(/[?.,;:'"!]/g, "").toLowerCase().split('');
 
-    // split it in half, if its not even take out the middle, it can be discarded actually
-    let firstHalf;
-    let secondHalf; // it can just be Math.ceil because it will work
+    // split plainCopy in half, if its length is odd, disgard the middle character
     let len = plainCopy.length;
-
-    // if its even split them evenly
+    let secondHalf = plainCopy.splice(Math.ceil(len/2));
+    let firstHalf;
     if (len % 2 === 0) {
-        secondHalf = plainCopy.splice(0, (len/2));
+        firstHalf = plainCopy;
+    } else {
+       let missing = plainCopy.pop();
+        firstHalf = plainCopy;
     }
 
-    console.log(secondHalf)
-    /// if its odd, take out the middle, then split evenly
-
-
-
+    // if they match, tell user its a palindrome, if they do not, tell user it is not
+    firstHalf.join('') === secondHalf.reverse().join('') ? 
+        console.log(`"${str}" is a palindrome!`) : console.log(`"${str}" is NOT a palindrome!`);
 }
 
 
