@@ -8,15 +8,11 @@ const rl = readline.createInterface({
     output: process.stdout
 });
 
+
 rl.question("Enter a number: ", (input) => {
     let x = parseInt(input);
-
-
-
-
+    x % 10 === 0 ? console.log(`${x} is divisible by 10`) : console.log(`${x} is not divisble by 10`);
+    rl.close();
 })
 
 
-
-let answer = divisibleByTen(x);
-console.log(answer)
