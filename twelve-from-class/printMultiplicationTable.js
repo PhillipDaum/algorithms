@@ -1,5 +1,8 @@
 // print a multiplication table of a size the user enters in the terminal
 
+// add try catch to ensure num(input) is a thing
+
+
 const readline = require('readline');
 const rl = readline.createInterface({
     input: process.stdin,
@@ -9,6 +12,11 @@ const rl = readline.createInterface({
 let str = "1 2 3 4 5 \n 2 4 6 8 10";
 
 const printTable = (num) => {
+    let arr = [];
+    let counter = 0;
+    let total = Number(num)^2;
+    console.log(total);
+    // while (counter <= num)
     // create an array
         // the length is the num^2 + num -1 
         // when you get to num add \n
