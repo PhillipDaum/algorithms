@@ -1,40 +1,49 @@
-// prints even numbers from an array 
+// prints even numbers from an array
 
-const readline = require('readline');
+const readline = require("readline");
 
 let userArr;
 
 const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
-})
+  input: process.stdin,
+  output: process.stdout,
+});
 
-function createArray () {
-    rl.question("how big of an array do you want? ", (input) => {
-        let numberInput = Number(input);
-        if (isNaN(numberInput)) {
-            console.log("entry must be a number, try again")
-            createArray();
-        } else {
-            arr = Array.from({length: numberInput}, (_, index) => Math.floor(Math.random()*index));
-            console.log("Here is your array", arr)
-        }
-    });
-} 
+const printEvens = (arr) => arr.filter((num) => num % 2 === 0).join(", ");
 
-function printEvens (arr) {
-    rl.question("would you like to print a string of all of the even numbers from your array? ", (input) => {
-        // will take y, n, yes, or no
-        // remove all caps, 
-        let processedInput = input.toLowerCase;
-        console.log(processedInput)
-    });
+function doYouWantToPrint(arr) {
+  rl.question(
+    "would you like to print a string of all of the even numbers from your array? ",
+    (input) => {
+      let processedInput = input.toLowerCase();
+      if (processedInput === "y" || processedInput === "yes") {
+        console.log("here ya go! \n", printEvens(arr));
+        rl.close();
+      } else if (processedInput === "n" || processedInput === "no") {
+        console.log("okay bye");
+        rl.close();
+      } else {
+        console.log("must enter 'yes' or 'no'");
+        doYouWantToPrint(userArr);
+      }
+    }
+  );
 }
 
-function printEven () {
-    console.log("is there?", userArr)
-    createArray();
-    printEvens(userArr);
+function createArray() {
+  rl.question("how big of an array do you want? ", (input) => {
+    let numberInput = Number(input);
+    if (isNaN(numberInput)) {
+      console.log("entry must be a number, try again");
+      createArray();
+    } else {
+      userArr = Array.from({ length: numberInput }, (_, index) =>
+        Math.floor(Math.random() * index)
+      );
+      console.log("Here is your array", userArr);
+      doYouWantToPrint(userArr);
+    }
+  });
 }
 
-printEven();
+createArray();

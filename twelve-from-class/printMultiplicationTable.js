@@ -1,7 +1,4 @@
-// print a multiplication table of a size the user enters in the terminal
-
-// add try catch to ensure num(input) is a thing
-
+// prints a multiplication table of a size the user enters in the terminal
 
 const readline = require('readline');
 const rl = readline.createInterface({
@@ -9,24 +6,42 @@ const rl = readline.createInterface({
     output: process.stdout
 });
 
-let str = "1 2 3 4 5 \n 2 4 6 8 10";
-
-const printTable = (num) => {
-    let arr = [];
+function printTable(num) {
+    let bigArr =[]
     let counter = 0;
-    let total = Number(num)^2;
-    console.log(total);
-    // while (counter <= num)
-    // create an array
-        // the length is the num^2 + num -1 
-        // when you get to num add \n
-        // then do the same thing * 1++ until you get to num 
-    // join it into a string, with spaces
-    // console.log the string
+    while (counter <= num) {
+        if (counter === 0) {
+            let arr = [];
+            for (let i = 0; i <= num; i++) {
+                arr.push(i);
+            }
+            let answer = arr.join(' ');
+            bigArr.push(answer);
+        } else {
+            let arr = [];
+            arr.push(counter);
+            for (let i = 1; i <= num; i++) {
+                arr.push(i*counter)
+            }
+            let answer = arr.join(' ');
+            bigArr.push(answer);
+        }
+        counter++;
+    }
+    let bigAnswer = bigArr.join('\n');
+    console.log(bigAnswer)
 }
 
-// do try catch here later
-rl.question("how big of a multiplication table do you want: ", (input) => {
-    printTable(input);
-    rl.close();
-})
+function interface() {
+    rl.question("how big of a multiplication table do you want: ", (input) => {
+        let numberInput = Number(input);
+        if (isNaN(numberInput) || numberInput < 0 || numberInput > 50 || !Number.isInteger(numberInput)) {
+            console.log("must enter an integer that is between 0 and 50, please try again.")
+            interface();
+        } else {
+            printTable(numberInput);
+            rl.close();
+        }
+    })
+}
+interface();
