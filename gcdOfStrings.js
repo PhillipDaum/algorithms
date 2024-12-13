@@ -15,6 +15,8 @@ const eulersAlgo = (a,b) => {
 
 
 const gcdOfStrings = (str1, str2) => {
+    // first make sure they aren't an empty string
+    if (str1 === '' || str2 === '') return '';
     // first see if they can even work
     if (str1 + str2 !== str2 + str1) return '';
     // then, find the gdc of the numbers 
