@@ -9,6 +9,8 @@ let theMin = findMin(randomArr);
 console.log("less code:", theMin)
 
 
+/// could use two pointers or removing the element from the array 
+
 //more code
 const alsoFindMin = (arr) => {
     let min = Infinity;
@@ -19,16 +21,13 @@ const alsoFindMin = (arr) => {
     }
     return min;
 }
-let min = alsoFindMin(...randomArr);
+let min = alsoFindMin(randomArr);
 console.log("more code:", min)
 
 
 // one way
 const selectionSort = (nums) => {
-    // do a loop and perform it until there are no more
     let sortedArr = [];
-    // runs infinitly because it isn't removing the item
-    /// could use splice or something
     while(nums) {
         let min = findMin(nums); // or alsoFindMin(nums)
         sortedArr.push(min)
@@ -36,6 +35,6 @@ const selectionSort = (nums) => {
     return sortedArr
 } 
 
-let answer = selectionSort(randomArr);
-console.log(answer)
+// let answer = selectionSort(randomArr);
+// console.log(answer)
 
