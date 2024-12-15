@@ -1,5 +1,4 @@
 // finds the greatest common divisor between two strings
-
 let a = "ABABAB";
 let b = "ABAB";
 let c = "LEET";
@@ -7,11 +6,11 @@ let d = "CODE";
 
 
 // Euler's algorithm
-function gdc (a,b) {
+const eulersAlgo = (a,b) => {
     if (b === 0)
         return a;
     else 
-     return  gdc (b, (a % b))
+     return  eulersAlgo (b, (a % b))
 }
 
 
@@ -21,7 +20,12 @@ const gcdOfStrings = (str1, str2) => {
     // then, find the gdc of the numbers 
     let x = str1.length;
     let y = str2.length;
-   console.log(gdc (x, y));
+
+    let d = eulersAlgo(x,y);
+    console.log(d)
+
+    return str1.substring(0,d)
 }
 
-gcdOfStrings(a,b);
+let answer = gcdOfStrings(a,b);
+console.log(answer)
